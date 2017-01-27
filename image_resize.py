@@ -24,12 +24,6 @@ def resize_image(image_path, output_path, width=None, height=None, scale=None):
             new_width = width
         elif width and height:
             new_width, new_height = width, height
-            ratio = img.height / img.width
-            new_ratio = new_height / new_width
-            if ratio != new_ratio:
-                message = """Aspect ratio of resized image will be
-                             different from ratio of original image!"""
-                warnings.warn(message)
         else:
             new_width, new_height = img.width, img.height
     if not output_path:
@@ -37,10 +31,6 @@ def resize_image(image_path, output_path, width=None, height=None, scale=None):
         ext_part = op.splitext(image_path)[1]
         output_path = "%s__%dx%d%s" % (root_part, new_width,
                                        new_height, ext_part)
-    else:
-        output_dir = op.split(output_path)[0]
-        if not op.isdir(output_dir):
-            raise FileNotFoundError("The dir %s doesn't exist." % output_dir)
     output_img = img.resize((new_width, new_height))
     output_img.save(output_path)
     img.close()
