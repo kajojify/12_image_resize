@@ -1,5 +1,4 @@
 import argparse
-import warnings
 import os.path as op
 from PIL import Image
 
