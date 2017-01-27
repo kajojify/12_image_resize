@@ -35,8 +35,4 @@ Exiting...
 
 ~$ python3 image_resize.py ~/pic.jpg -o ~/Документы/pic.jpg -w 480 -a 580
 
-~$ python3 image_resize.py ~/pic.jpg -o ~/Документы/pic.jpg -w 480 -a 517
-image_resize.py:32: UserWarning: Aspect ratio of resized image will be
-                                 different from ratio of original image!
-  warnings.warn(message)
 ```
