@@ -5,8 +5,6 @@ from PIL import Image
 
 
 def resize_image(image_path, output_path, width=None, height=None, scale=None):
-    if not op.exists(image_path):
-        raise FileNotFoundError("The image %s doesn't exist." % image_path)
     img = Image.open(image_path)
     if scale:
         if width or height:
