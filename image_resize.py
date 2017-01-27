@@ -14,14 +14,9 @@ def resize_image(image_path, output_path, width=None, height=None, scale=None):
             new_width = int(img.width * scale)
             new_height = int(img.height * scale)
     else:
-        if not width and height:
-            new_width = (img.width * height) // img.height
-            new_height = height
-        elif width and not height:
-            new_height = (img.height * width) // img.width
-            new_width = width
-        elif width and height:
-            new_width, new_height = width, height
+        if width or height:
+            new_width = width if width else (img.width * height) // img.height
+            new_height = height if height else (img.height * width) // img.width
         else:
             new_width, new_height = img.width, img.height
     if not output_path:
