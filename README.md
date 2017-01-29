@@ -1,7 +1,8 @@
 12_image_resize
 ===================
-
-The script is a console image resizer. It takes several parameters:
+ Он принимает на вход изображение и кладёт изображение с новым размером куда скажет пользователь или рядом с исходным. У него есть обязательный аргумент – путь до исходной картинки.
+ 
+The script is a console image resizer. It changes the size of image that takes as input. It takes several parameters:
 
 image_resize.py [-h] [-w WIDTH] [-a HEIGHT] [-s SCALE] [-o OUTPUT] imagepath
 
@@ -17,6 +18,8 @@ image_resize.py [-h] [-w WIDTH] [-a HEIGHT] [-s SCALE] [-o OUTPUT] imagepath
 
 `-h --help`    -  help reference.
 
+The size of resized image are based on these parameters.
+
 If script takes only width (height) parameter, image will be resized in consideration of ratio.
 
 If script takes width and height parameters, image will be resized excluding the ratio. 
@@ -24,6 +27,18 @@ If script takes width and height parameters, image will be resized excluding the
 If script takes scale parameter, it can't take width or height parameter(s) at the same time. Otherwise, exception is raised.
 
 If output parameter isn't set, resized image will be put into the same folder with original image and will be named "imagename__widthxheight.extension". 
+
+How to run
+----------
+Clone this repository. Then go to the repository directory.
+Install all requirements:
+```
+pip3 install -r requirements.txt
+```
+Run the script with parameters you need:
+```
+python3 image_resize.py [-h] [-w WIDTH] [-a HEIGHT] [-s SCALE] [-o OUTPUT] imagepath
+```
 
 Usage
 -----
