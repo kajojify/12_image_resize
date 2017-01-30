@@ -5,6 +5,19 @@ from PIL import Image
 
 def resize_image(image_path, output_path, width=None, height=None, scale=None):
     img = Image.open(image_path)
+    new_width, new_height = get_new_size(img, width, height, scale)
+    if not output_path:
+        root_part = op.splitext(image_path)[0]
+        ext_part = op.splitext(image_path)[1]
+        output_path = "{}__{}x{}{}".format(root_part, new_width,
+                                           new_height, ext_part)
+    output_img = img.resize((new_width, new_height))
+    output_img.save(output_path)
+    img.close()
+    output_img.close()
+
+
+def get_new_size(img, width=None, height=None, scale=None):
     if scale:
         if width or height:
             raise ValueError("Scale is specified with width or height "
@@ -18,15 +31,8 @@ def resize_image(image_path, output_path, width=None, height=None, scale=None):
             new_height = height if height else (img.height * width) // img.width
         else:
             new_width, new_height = img.width, img.height
-    if not output_path:
-        root_part = op.splitext(image_path)[0]
-        ext_part = op.splitext(image_path)[1]
-        output_path = "%s__%dx%d%s" % (root_part, new_width,
-                                       new_height, ext_part)
-    output_img = img.resize((new_width, new_height))
-    output_img.save(output_path)
-    img.close()
-    output_img.close()
+    return new_width, new_height
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Image resizer")
@@ -44,5 +50,4 @@ if __name__ == '__main__':
                      args.width, args.height, args.scale)
     except (FileNotFoundError, ValueError) as img_error:
         print("Something went wrong!", img_error)
-        print("Exiting...")
-        exit()
+        exit("Exiting...")
