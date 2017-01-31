@@ -1,7 +1,5 @@
 12_image_resize
 ===================
- Он принимает на вход изображение и кладёт изображение с новым размером куда скажет пользователь или рядом с исходным. У него есть обязательный аргумент – путь до исходной картинки.
- 
 The script is a console image resizer. It changes the size of image that takes as input. It takes several parameters:
 
 image_resize.py [-h] [-w WIDTH] [-a HEIGHT] [-s SCALE] [-o OUTPUT] imagepath
